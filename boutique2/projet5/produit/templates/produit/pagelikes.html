@@ -1,0 +1,27 @@
+
+
+      <TABLE BORDER="5"    WIDTH="100%"   CELLPADDING="4" CELLSPACING="3">
+   <TR>
+      <TH COLSPAN="4"><BR><H3>all reaction to product {{ produit_name}}</H3>
+      </TH>
+   </TR>
+   <TR>
+       <th><h4>Normal:<br> {{ normal}}</h4></th>
+      <th><h4>Smile: <br>{{ smile}}</h4></th>
+      <th><h4>Love: <br>{{ love }}</h4></th>
+      <th><h4>Wish: <br>{{ wish }}</h4></th>
+   </TR>
+   <TR ALIGN="CENTER">
+     <td>{% for user in list_normal%}
+{{ user}}<br> {% endfor %}</td>
+
+    <td>{% for user in list_smile %}
+{{ user}}<br> {% endfor %}</td>
+
+<td>{% for user in list_love%}
+{{ user}}<br> {% endfor %}</td>
+
+<td>{% for user in list_wish%}
+{{ user}} <br>{% endfor %}</td>
+   </TR>
+</TABLE>

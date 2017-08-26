@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:bijoux="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta charset="UTF-8">
+<title>{% block title %}Viberr{% endblock %}</title>
+
+{% load i18n %}
+{% load humanize %}
+{% load staticfiles %}
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/css_left.css' %}"/> 
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/price_cercle.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/jquery.mobile-1.4.5.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/bootstrap.min2.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/style.css' %}"/>
+
+<link href="{% static 'notification/css/notification.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'notification/css/labell.css' %}?v=1" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootcamp.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/fonts.googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3_4.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/Raleway.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/font-awesome.min.css' %}"/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltyptext.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/slider/bootstrap-slider.min.css' %}">
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'produit/js1/slider/import/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'produit/js1/autocomplit_jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'produit/js1/slider/slider.js' %}"></script>
+<script src="{% static 'produit/js1/main.js' %}"></script>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+
+{% load i18n %}
+{% load humanize %}
+
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'boutique:index' %}">schop</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'boutique:index' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Boutiques</a></li>
+                  <li class="{% block albums %}{% endblock %}"><a href="{% url 'discover:post_list' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Products</a></li>
+
+                   </ul>
+             <form class="navbar-form navbar-left" role="search" method="get"  action="{% url 'discover:filter2' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typehead" id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+                </div>
+                  
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'boutique:create_boutique' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Create Boutique
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'authontication:login_descover' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+
+
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:350px; bottom: -50px" id="mySidebar">
+    <div class="w3-container">
+
+
+
+
+
+<br />
+
+       <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+        
+            <select  name="catego"  id="selectPointOfInterest" title="Select points of interest nearby">
+                                <option value="0">all categorie</option>
+                                <option value="bijoux " >bijoux({{ bijoux }})</option>
+                                <option value="maison et ameublement">Maison et Ameublement({{ maison }})</option>
+                                <option value="vetements ">Vetements({{ vetements }}) </option>
+                                <option value="art et collections">Art et collections({{ art }})</option>
+                                <option value="accessoires ">Accessoires({{ accessoires }}) </option>
+                                <option value="sacs et bagages">Sacs et Bagages({{ sac }})</option>
+                                <option value="mariage ">Mariage({{ mariage }})</option>
+            </select>
+
+                <button type="submit" class="btn btn-default" >categorie</button>
+                    <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+        
+
+          </form>
+
+ 
+              
+  <form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+      
+                       <select name="type" id="selectPointOfInterest" title="Select points of interest nearby"/>
+                                <option value="0">All type</option> 
+                                <option value="fait a la main">Fait à la main</option>
+                                <option value="vintage">Vintage</option>
+                                   
+                        </select>
+
+
+            <button type="submit" class="btn btn-default" >type</button>
+
+      <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+       <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+       
+   </form>
+    <form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+                       <select name="order" id="selectPointOfInterest" title="Select points of interest nearby"/>
+
+                                <option value="croissanttime">plus ancien</option>
+                                <option value="decroissanttime">plus recent</option>
+                             <option value="croissantprix">croissant prix</option>
+                                <option value="decroissantprix">decroissant prix</option>      
+                    </select>
+
+
+
+            <button type="submit" class="btn btn-default" >order time</button>
+
+      <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+       <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+             <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+    
+
+   
+       
+        </form>
+
+
+
+<form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}">
+<b>0 Dt</b> <input id="ex2" type="text" class="span2" value=""  name="b" data-slider-min="10" data-slider-max="1000" data-slider-step="1" /> <b> 1000</b>
+    <input type="submit" data-inline="true" value="Submit" >
+         <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+         <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+       <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+     <input type="hidden" name="order" value="{{ request.GET.order }}"/>
+
+
+</form>
+
+    <div class="row">
+  <div class="small-10 columns">
+    <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+    </div>
+  </div>
+  <div class="small-2 columns">
+    <input type="number" id="days-off-count" value="{{ minslider }}" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-10 columns">
+    <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+    </div>
+  </div>
+  <div class="small-2 columns">
+    <input type="number" id="days-off-count" value="{{ maxslider }}" />
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+
+</nav>
+<script type="text/javascript">
+  var slider = new Slider('#ex2', {
+      min: {{ minslider }},
+      max: {{ maxslider }},
+      value: [5, 1000]
+  })
+
+   </script>
+
+</body>
+
+<div class="col-sm-offset-3 ">
+{% block body %}
+     {% for produit in produitsfilters %}
+
+
+
+
+
+                                 <div class="col-sm-2 col-lg-4">
+                                    <div class="thumbnail">
+                                          <div><h3>{{ produit.title }}</h3></div>
+<a href="{% url 'discover:detail_produitdescover' produit.id %}">
+                                                <img src="{{ produit.logo.url }}"  style="width:500px;height:200px;" class="img-responsive">
+</a>
+
+
+<span class="price price-green">{{produit.prix }}DT </span>
+                                         <div>{{ produit.dat }}</div>
+
+
+{% include "reaction/reaction.html" %}
+
+
+
+<button id="share-buttons">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/boutique/produit/{{produit.id}}" class="popup"><img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+</button>
+
+
+                                       
+{% include 'authentication/loginpopup.html' %}
+<button type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">contact</button>
+
+
+
+                                            
+                                        </div>
+                                    </div>
+
+
+    {% endfor %}
+
+{% include "produit/pagination.html" with page=produitsfilters  %}
+ 
+<script src="{% static 'notification/js/check_notification.js' %}"></script>
+{% endblock %}
+</div>
+<script type="text/javascript" src="{% static 'reaction/js/likers_popup.js' %}"></script>
+<script type="text/javascript" src="{% static 'reaction/js/reactions.js' %}"></script>
+<script src="{% static 'produit/js1/typehead.js' %}"></script>
+</html>
+
+

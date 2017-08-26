@@ -1,0 +1,146 @@
+<div class="col-md-2" >
+<div class="filter" style="height: 900px"  >
+
+
+
+
+<br>
+
+
+        <form  style="padding-bottom: 0px" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+              <select style="width: 200px;margin-top: 50px;"  name="catego"  id="selectPointOfInterest" title="Select points of interest nearby">
+              <option value="all">all categorie</option>
+                                  <option value="bijoux " >bijoux({{ bijoux }})</option>
+                                  <option value="maison et ameublement">Maison et Ameublement({{ maison }})</option>
+              <option value="vetements ">Vetements({{ vetements }}) </option>
+                                  <option value="art et collections">Art et collections({{ art }})</option>
+              <option value="accessoires ">Accessoires({{ accessoires }}) </option>
+                        <option value="sacs et bagages">Sacs et Bagages({{ sac }})</option>
+              <option value="mariage ">Mariage({{ mariage }})</option>
+              </select>
+
+              <button type="submit" class="btn btn-default" >categorie</button>
+              <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+        </form>
+
+ 
+              
+      <form  method="get" style="padding-top: 0px" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+
+           <select style="width: 200px;" name="type" id="selectPointOfInterest" title="Select points of interest nearby"/>
+          <option value="all">All type</option> 
+                              <option value="fait a la main">Fait à la main</option>
+                              <option value="vintage">Vintage</option>
+                       
+                      </select>
+
+
+                      <button type="submit" class="btn btn-default" >type</button>
+
+          <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+          <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+
+      </form>
+
+
+<br>
+        <form  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+               <select style="width: 200px;" name="order" id="selectPointOfInterest" title="Select points of interest nearby"/>
+
+                                  <option value="croissanttime">plus ancien</option>
+                                  <option value="decroissanttime">plus recent</option>
+                     <option value="croissantprix">croissant prix</option>
+                                  <option value="decroissantprix">decroissant prix</option>      
+                          </select>
+
+
+
+                          <button type="submit" class="btn btn-default" >order time</button>
+
+              <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+              <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+              <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+
+        </form>
+
+
+
+
+
+<br><br>
+
+
+ <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Promotion
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+  <form  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+ 
+    <li><button type="submit" name="flashe" value="flashe">flashe </button></li>
+    <li><button type="submit" name="regular" value="regular">regular </button></li>
+
+    <li><input type="number" style="width: 50px;" name="minpromo" value="">min</li>
+    <li><input type="number" style="width: 50px" name="maxpromo" value="">max</li>
+    </form>
+  </ul>
+</div> 
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+
+
+
+            <form class="navbar-form navbar-left" method="get" style="width: 150px" action="{% url 'discover:filter2' %}">
+                <b>0 Dt</b> <input id="ex2" type="text" class="span2" value=""  name="b" data-slider-min="10" data-slider-max="1000" data-slider-step="1" /> <b> 1000</b>
+                <input type="submit" data-inline="true" value="Submit" >
+                <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+                <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                <input type="hidden" name="order" value="{{ request.GET.order }}"/>
+            </form>
+
+
+         
+
+          <!--   <div class="col-md-3">
+                  <div class="row">
+                  <div class="small-10 columns">
+                  <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+                  <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                  <span class="range-slider-active-segment"></span>
+                  </div>
+                  </div>
+                  <div class="col-sm-offset-1">
+                  <input type="number" style="width: 50px" id="days-off-count" value="{{ minslider }}" />
+                  </div>
+                  </div>
+              </div>
+
+        <div class="col-md-3">      
+              <div class="row">
+              <div class="small-10 columns">
+              <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+              <span class="range-slider-handle" role="slider" tabindex="0"></span>
+              <span class="range-slider-active-segment"></span>
+              </div>
+              </div>
+              <div class="col-sm-offset-10">
+              <input type="number" id="days-off-count" style="width: 50px" value="{{ maxslider }}" />
+              </div>
+              </div>
+        </div> -->
+</div>
+</div>
+
+

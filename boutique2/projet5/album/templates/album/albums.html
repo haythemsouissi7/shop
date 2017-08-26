@@ -1,0 +1,131 @@
+{% extends 'produit/base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+<style type="text/css">
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+</style>
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3" style="margin-top: 75px">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="">
+                        {% if boutique.logo %}
+                            <img src="{{ boutique.logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ boutique.name }} </h1>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                 </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body" style="margin-top: 30px">
+
+                    <h3>Albums</h3>
+
+{% if request.user == boutique.user %}
+<li role="presentation"><a href="{% url 'album:formulaire' boutique.id %}">Add New album</a></li>
+{%endif%}
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                   
+                        {% for album in albums %}
+                            
+
+{% if album.image%}
+                        <a href="{% url 'album:show_picture' album.id %}">
+                         <img src="{{ album.image.url }}" style="width:100px;height:100px;"></a>
+                         {% endif %}
+                                {{ album.name }} 
+
+
+
+                  
+
+
+
+
+
+
+
+                                         <div>
+         
+
+
+
+
+
+
+
+
+<!--  if produit activé permission de detailler-->
+
+
+
+</div>
+
+
+
+
+
+                        {% endfor %}
+                       
+
+   <script src="{% static 'produit/js1/activer.js' %}"></script>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+function refreshPage(){
+    window.location.reload();
+    reture false;
+} 
+</script>
+
+
+
+
+
+
+
+{% endblock %}

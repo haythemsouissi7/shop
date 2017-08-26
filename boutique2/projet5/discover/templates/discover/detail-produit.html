@@ -1,0 +1,54 @@
+{% extends 'produit/base.html' %}
+{% block body %}
+{% load i18n %}
+{% load humanize %}
+    <div class="col-sm-offset-2 col-sm-12">
+    <div class="row">
+  <div class="col-md-6"><img src="{{ produit.logo.url }}" style="width:600px;height:600px;"></div>
+{%if produit.image1%}
+     <ha>  <div class="col-xs-6 .col-md-1"><img src="{{ produit.image1.url }}" style="width:200px;height:200px;"> </div></ha>{%endif%}
+
+     {%if produit.image2%}
+       <ha> <div class="col-xs-6 .col-md-1"><img src="{{ produit.image2.url }}" style="width:200px;height:200px;"> </div></ha>{%endif%}
+
+       {%if produit.image3%}
+       <ha> <div class="col-xs-6 .col-md-1"><img src="{{ produit.image3.url }}" style="width:200px;height:200px;"> </div></ha>
+       {%endif%}
+    </div>
+
+
+
+
+
+<div class="like-container">
+
+<form action="{% url 'discover:visite_boutique' produit.boutique.id %}" style="width: 100px;height: 50px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class="glyphicon glyphicon-remove"></span>&nbsp; Visite Boutique
+        </button>
+</form>
+<div>
+    <ul>
+        <li> <h3>product name : {{ produit.title }}</h3></li>
+        <h3>produit prix : {{ produit.prix }}</h3>
+        <h3>produit categorie : {{ produit.categorie }}</h3>
+        <h3> product description : {{ produit.descreption }}</h3>
+<h3> product status : {{ produit.etat }}</h3>
+         <h3>boutique : {{ produit.boutique.name }}</h3>
+<h3>user : {{ produit.boutique.user }}</h3>
+        <h3>produit type: {{ produit.type}}</h3>
+<h3>{{produit.likes}}
+</h3></ul>
+
+</div>
+
+
+
+
+	{% if error_message %}
+	 	<p>{{error_message}}</p>
+	 {% endif%}
+    </div></div>
+{% endblock %}

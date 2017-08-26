@@ -1,0 +1,46 @@
+{% extends 'produit/base.html' %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+
+  
+
+
+    {% for produit in produits %}
+
+            <div class="col-sm-2 col-lg-4">
+                                    <div class="thumbnail">
+ <a href="{% url 'boutique:detail_produit' produit.id %}">
+                                   <img src="{{ produit.logo.url }}"  style="width:500px;height:200px;" class="img-responsive">
+                                </a>
+
+
+
+                                            <div class="caption">
+
+
+
+<!--<input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> -->
+                                     <!-- Delete Album -->
+
+  <div><h1>bijoux: {{ bijoux }}</h1></div>
+                                                 <div><h1>maison: {{ maison}}</h1></div>
+                                                 <div><h1>sac et bagage : {{ sac }}</h1></div>
+                                                <!-- Favorite Album -->
+
+
+                                            </div>
+
+            <li><a href="{% url 'boutique:detail_produitdescover' produit.id %}"> {{produit.title}}</a></li>
+
+</div>
+    </div>
+    {% endfor %}
+
+
+
+
+
+
+{% endblock %}

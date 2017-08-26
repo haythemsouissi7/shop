@@ -1,0 +1,202 @@
+{% extends 'produit/base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+<style type="text/css">
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+</style>
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3" style="margin-top: 75px">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'boutique:detail' boutique.id %}">
+                        {% if boutique.logo %}
+                            <img src="{{ boutique.logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ boutique.name }} </h1>
+
+                </div>
+
+
+<div class="panel panel-default">
+                <div class="panel-body">
+                <form action="{% url 'boutique:detail' boutique.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:35px"></span>&nbsp; Produits
+        </button>
+</form>
+<br>
+<form action="{% url 'collection' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:20px"></span>&nbsp; Collections
+        </button>
+</form>
+<br>
+<form action="{% url 'promotion:promotions' boutique.id %}" style="width: 100px;height: 50px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:20px"></span>&nbsp; Promotions
+        </button>
+</form>
+</div></div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                 </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body" style="margin-top: 30px">
+
+                    <h3>All Collections</h3>
+
+
+<li role="presentation"><a href="{% url 'collection:formulaire_collection' %}">Add New Collection</a></li>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>collection name</th>
+
+                            
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for collection in collections %}
+                            <tr>
+                            <td>
+
+{% if collection.picture%}
+                            <div class="col-md-6"><img src="{{ collection.picture.url }}" style="width:100px;height:100px;"></div>{% endif %}</td>
+                                <td>{{ collection.title }} </td>
+
+<td>
+
+                  
+
+
+
+ <div class="songs-container">
+
+ <form action="{% url 'collection:active' collection.id %}" id="active" method="post" style="display: inline;">
+        {% csrf_token %}
+       {% if collection.is_active == True %}
+        <button type="submit" class="btn btn-default" id="btn_active" onClick="refreshPage()>Click" style="color: green;width: 110px" >
+            <span class="glyphicon glyphicon-ok"></span>&nbsp; active
+        </button>
+        {% else %}
+        <button type="submit" class="btn btn-default" id="btn_active" style="color: red;width: 110px" >
+            <span class="glyphicon glyphicon-remove"></span>&nbsp; desactive
+        </button>
+        {% endif %}
+</form>
+  </div>
+                                </td>
+
+                              <td>
+
+
+
+                                         <div>
+         
+
+
+<form action="{% url 'collection:detail_collection' collection.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+       
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open"></span>&nbsp; Detail
+        </button>
+</form>
+
+
+
+<form action="{% url 'collection:edit_collection' collection.id  %}?title={{collection.title}}&discription={{collection.discription}}&picture={% if collection.picture %}{{collection.picture.url}}{%endif%}" method="post" style="display: inline;">
+        {% csrf_token %}
+       
+        <button type="submit" class="btn btn-default" >
+       
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;modifier
+        </button>
+</form>
+
+
+
+
+<!--  if produit activé permission de detailler-->
+
+
+
+</div>
+
+
+
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+   <script src="{% static 'produit/js1/activer.js' %}"></script>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+function refreshPage(){
+    window.location.reload();
+    reture false;
+} 
+</script>
+
+
+
+
+
+
+
+{% endblock %}

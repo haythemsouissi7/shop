@@ -1,0 +1,346 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+
+
+
+body{
+	background: white;
+}
+
+ha {
+    margin: 0 0 100px 0;
+}
+
+.navbar{
+
+    border-radius: 0;
+
+}
+.navbar-brand{
+    font-family: 'satisfy', cursive;
+}
+.cloud-zoom-lens {
+	border: 4px solid #888;
+	margin:-4px;	/* Set this to minus the border thickness. */
+	background-color:#fff;
+	cursor:move;
+}
+
+/* This is for the title text. */
+.cloud-zoom-title {
+	font-family:Arial, Helvetica, sans-serif;
+	position:absolute !important;
+	background-color:#000;
+	color:#fff;
+	padding:3px;
+	width:100%;
+	text-align:center;
+	font-weight:bold;
+	font-size:10px;
+	top:0px;
+}
+
+/* cloud zoom wrapper styles */
+.cloud-zoom-wrap {
+    top:0;
+    z-index:9999;
+    position:relative;
+}
+
+/* This is the zoom window. */
+.cloud-zoom-big {
+	border:4px solid #ccc;
+	overflow:hidden;
+}
+
+/* This is the loading message. */
+.cloud-zoom-loading {
+	color:white;
+	background:#222;
+	padding:3px;
+	border:1px solid #000;
+}
+/*custom font*/
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	/*background = gradient + image pattern combo*/
+
+}
+
+body {
+	font-family: montserrat, arial, verdana, serif;
+}
+/*form styles*/
+#msform {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+
+	/*stacking fieldsets above each other*/
+	position: absolute;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat, serif;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*headings*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: Calibri, "Trebuchet MS", sans-serif;
+  font-size: 100%;
+}
+
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+
+.example {
+  background: #eee;
+  padding: 50px;
+}
+
+/* - - - ADxMenu: BASIC styles [ MANDATORY ] - - - */
+
+/* remove all list stylings */
+.menu, .menu ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style-type: none;
+  display: block;
+}
+
+.menu li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: block;
+  float: left;  /* move all main list items into one row, by floating them */
+  position: relative; /* position each LI, thus creating potential IE.win overlap problem */
+  z-index: 5;   /* thus we need to apply explicit z-index here... */
+}
+
+.menu li:hover {
+  z-index: 10000; /* ...and here. this makes sure active item is always above anything else in the menu */
+  white-space: normal;/* required to resolve IE7 :hover bug (z-index above is ignored if this is not present)
+              see http://www.tanfa.co.uk/css/articles/pure-css-popups-bug.asp for other stuff that work */
+}
+
+.menu li li {
+  float: none;/* items of the nested menus are kept on separate lines */
+}
+
+.menu ul {
+  visibility: hidden; /* initially hide all submenus. */
+  position: absolute;
+  z-index: 10;
+  left: 0;  /* while hidden, always keep them at the top left corner, */
+  top: 0;   /*    to avoid scrollbars as much as possible */
+}
+
+.menu li:hover>ul {
+  visibility: visible;  /* display submenu them on hover */
+  top: 100%;  /* 1st level go below their parent item */
+}
+
+.menu li li:hover>ul {  /* 2nd+ levels go on the right side of the parent item */
+  top: 0;
+  left: 100%;
+}
+
+/* -- float.clear --
+  force containment of floated LIs inside of UL */
+.menu:after, .menu ul:after {
+  content: ".";
+  height: 0;
+  display: block;
+  visibility: hidden;
+  overflow: hidden;
+  clear: both;
+}
+.menu, .menu ul { /* IE7 float clear: */
+  min-height: 0;
+}
+/* -- float.clear.END --  */
+
+/* -- sticky.submenu --
+  it should not disappear when your mouse moves a bit outside the submenu
+  YOU SHOULD NOT STYLE the background of the ".menu UL" or this feature may not work properly!
+  if you do it, make sure you 110% know what you do */
+.menu ul {
+  background-image: url(empty.gif); /* required for sticky to work in IE6 and IE7 - due to their (different) hover bugs */
+  padding: 10px 30px 30px 30px;
+  margin: -10px 0 0 -30px;
+  /*background: #f00;*/ /* uncomment this if you want to see the "safe" area.
+                you can also use to adjust the safe area to your requirement */
+}
+.menu ul ul {
+  padding: 30px 30px 30px 10px;
+  margin: -30px 0 0 -10px;
+}
+/* -- sticky.submenu.END -- */
+
+
+
+
+
+
+/* - - - ADxMenu: DESIGN styles [ OPTIONAL, design your heart out :) ] - - - */
+
+.menu, .menu ul li {
+  color: #eee;
+  background: #234;
+}
+
+.menu ul {
+  width: 11em;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #eee;
+  padding: .4em 1em;
+  display: block;
+  position: relative;
+}
+
+.menu a:hover, .menu li:hover>a {
+  color: #fc3;
+}
+
+.menu li li { /* create borders around each item */
+  border: 1px solid #ccc;
+}
+.menu ul>li + li {  /* and remove the top border on all but first item in the list */
+  border-top: 0;
+}
+
+.menu li li:hover>ul {  /* inset 2nd+ submenus, to show off overlapping */
+  top: 5px;
+  left: 90%;
+}
+
+/* special colouring for "Main menu:", and for "xx submenu" items in ADxMenu
+  placed here to clarify the terminology I use when referencing submenus in posts */
+.menu>li:first-child>a, .menu li + li + li li:first-child>a {
+  color: #567;
+}

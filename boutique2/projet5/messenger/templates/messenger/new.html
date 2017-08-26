@@ -1,0 +1,141 @@
+{% extends 'messenger/base_messages_new.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'New message' %}{% endblock %}
+
+{% block page_header %}{% trans 'New message' %}{% endblock %}
+
+{% block container %}
+<div class="col-md-9">
+
+  <form class="form-horizontal" role="form" method="post" id="sendd"  >
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="to" class="col-sm-1 control-label">To</label>
+      <div class="col-sm-11">
+        <input class="form-control typeahead" type="text" id="to" name="to" value="{{request.GET.too}}">
+         <input type="hidden" name="objet" value="{{ request.GET.ob}}"/>
+         <input type="hidden" name="url" value="{{ request.GET.url}}"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="to" class="col-sm-1 control-label">Message</label>
+      <div class="col-sm-11">
+        <textarea class="form-control" id="message" name="message" placeholder="Write a message" rows="4"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+
+    <div class="col-md-1 col-sm-offset-1">
+      <div class="col-sm-11 col-sm-offset-1">
+      
+        <button type="submit" class="btn btn-primary">Send</button>
+       
+
+      </div>
+      </div>
+<div class="col-md-2 col-sm-offset-1">
+
+ <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">product</button>
+ 
+</div>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="container">
+  </form>
+  </div>
+  
+    <div class="col-md-2">
+      
+
+              </div>
+  <!-- Trigger the modal with a button -->
+ 
+
+              
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">all pdoduct</h4>
+                      <form class="navbar-form navbar-left" role="search" method="get"  action="{% url 'search_modal' %}">
+                        <div class="form-group">
+                            <input type="text" class="form-control typehead" id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+
+                            <input type="hidden" class="form-control typehead" id="to" name="to" value="{{ request.GET.too }}">
+                        </div> 
+                      </form>
+         
+                     </div>
+                    <div class="modal-body" id="modal-body2">
+                       <table class="table">
+                        <thead>
+                        <tr>
+                        <th>image</th>
+                        <th>product name</th>  
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+ {% for produit in produituser %}
+ <tr>
+                            
+<tr><td><a href="{% url 'discover:detail_produitdescover' produit.id %}">
+ <img src="{{ produit.logo.url }}"  style="width:100px;height:100px;" class="img-responsive">
+</a></td>
+<td><div>{{produit.title}} 
+          
+
+          <form  method="post" action="{% url 'new_product' %}"  enctype="multipart/form-data" csrf="{{csrf_token}}">
+          {% csrf_token %}
+          <input type="hidden" name="to" id="to" value="{{ request.GET.too }}">
+          <input type="hidden" name="objet" value="{{ produit.title}}">
+          <input type="hidden" name="url" class="url" value="{{ produit.id }}">
+          
+     
+           <button type="submit" class="btn btn-success">Sendtest</button>
+
+  </form>
+
+
+        </div>
+
+        </td></tr>
+
+
+{%endfor%}
+
+</tbody></table>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+</tr>
+</div>
+   
+   <script type="text/javascript">
+//send_product
+</script>
+
+
+<script src="{% static 'js/attach_image.js' %}"></script>
+<script src="{% static 'js/search_product_popup.js' %}"></script>
+<script src="{% static 'js/send_product.js' %}"></script>
+  <script src="{% static 'js/messages.typehead.js' %}"></script>
+{% endblock container %}

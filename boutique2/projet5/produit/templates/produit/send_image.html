@@ -1,0 +1,37 @@
+{% extends 'produit/base.html' %}
+{% block title %}All produuits{% endblock %}
+{% block songs_active %}active{% endblock %}
+{% load staticfiles %}
+
+{% block body %}
+{% for produit in produitsfilters %}
+<div class="col-sm-2 col-lg-4">
+<div class="thumbnail">
+<a href="{% url 'boutique:detail_produit' produit.id %}">
+<img src="{{ produit.logo.url }}"  style="width:500px;height:200px;" class="img-responsive">
+</a>
+<div>{{ produit.title }}</div>
+<div>{{ produit.prix }}</div>
+
+ <form role="form" method="post" action="{% url 'boutique:send2'  %}" id="send2">
+          {% csrf_token %}
+          <input type="hidden" name="to" value="{{ request.GET.user1 }}">
+          <input type="hidden" name="objet" value="{{ produit.title}}">
+          <input type="hidden" name="url" value="{{ produit.id }}">
+          <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Send</button>
+
+</form>
+<div class="caption">
+
+</div>
+</div>
+</div>
+
+
+    {% endfor %}
+
+{% include "produit/pagination.html" with page=produitsfilters %}
+
+
+{% endblock %}

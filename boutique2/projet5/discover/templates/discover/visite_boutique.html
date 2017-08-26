@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>{% block title %}Viberr{% endblock %}</title>
+
+{% load i18n %}
+{% load humanize %}
+{% load staticfiles %}
+
+<style >
+
+
+.arrow-right {
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+  width: 0; 
+  height: 0; 
+  
+}
+
+
+
+.up h4 {
+    text-align: center;
+    top: -30px;
+    left: -50px;
+    position: relative;
+    width: 50px;
+    height: 80px;
+    margin: 0px;
+    transform:rotate(180deg);
+}
+
+.triangle{
+width: 250px;
+height: 90px;
+}
+.up1{
+  width: 70px:
+  height:80px;
+}
+.disc{
+  width: 70px;
+  height: 80px;
+}
+.tim{
+  width: 70px;
+  height: 80px;
+}
+
+
+
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/css_left.css' %}"/> 
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/price_cercle.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/jquery.mobile-1.4.5.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/bootstrap.min2.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/style.css' %}"/>
+
+<link href="{% static 'notification/css/notification.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'notification/css/labell.css' %}?v=1" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootcamp.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/fonts.googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3_4.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/Raleway.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/font-awesome.min.css' %}"/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltyptext.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/slider/bootstrap-slider.min.css' %}">
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'produit/js1/slider/import/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'produit/js1/autocomplit_jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'produit/js1/slider/slider.js' %}"></script>
+<script src="{% static 'produit/js1/main.js' %}"></script>
+<script src="{% static 'js/check_messages.js' %}"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+
+
+
+
+
+<link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/bootstrap.min.css' %}"/> 
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/googleapis.css' %}"/>    
+<link rel="stylesheet" type="text/css" href="{% static 'produit/style.css' %}"/>   
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/bootstrap-toggle.min.css' %}"/> 
+<script src="{% static 'produit/js1/import/bootstrap-toggle.min.js' %}"></script>
+<script src="{% static 'produit/js1/main.js' %}"></script>
+<script src="{% static 'produit/js1/main2.js' %}"></script>
+
+
+<script src="{% static 'produit/js1/import/jquery.min2.js' %}"></script>
+<script src="{% static 'produit/js1/import/jquery.min.js' %}"></script>
+<script src="{% static 'produit/js1/import/bootstrap.min.js' %}"></script>
+<script src="{% static 'produit/js1/messages.js' %}"></script>
+
+<script src="{% static 'js/check_messages.js' %}"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+ <script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+
+<script src="{% static 'js/countdoun.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.js' %}"></script>
+<script type="text/javascript">
+  function clock(produit) {
+    var $clock = produit.children('.clock'); 
+
+    var year=$clock.attr('year');
+    var month=$clock.attr('month');
+    var day=$clock.attr('day');
+    var hour=$clock.attr('hour');
+    var minut=$clock.attr('minut');
+    var second=$clock.attr('second');
+
+
+    //alert(year +'/'+ month+'/'+day+' '+hour+':'+minut+':'+second);
+
+    $clock.countdown($clock.attr('year') +'/'+ $clock.attr('month')+'/'+$clock.attr('day')+' '+$clock.attr('hour')+':'+$clock.attr('minut')+':'+$clock.attr('second'))
+    .on('update.countdown', function(event) {
+      var format = '%H:%M:%S';
+      if(event.offset.totalDays > 0) {
+        format = '%-d day%!d ' + format;
+      }
+      if(event.offset.weeks > 0) {
+        format = '%-w week%!w ' + format;
+      }
+      $(this).html(event.strftime(format));
+    })
+    .on('finish.countdown', function(event) {
+      $(this).html('This offer has expired!')
+        .parent().addClass('disabled');
+
+    });
+  }
+</script>
+</head>
+
+<body >
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'boutique:index' %}">schop</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                
+                  <li class="{% block albums_prod %}{% endblock %}"><a href="{% url 'discover:post_list' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Products</a></li>
+
+    <li class="{% block albums %}{% endblock %}"><a href="{% url 'album:albums' boutique.id %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums</a></li>
+
+                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
+                      <li>
+                  <a href="#" id="notifications" data-container="body" data-toggle="popover0" data-placement="bottom" title="Notifications">
+                    <span class="glyphicon glyphicon-bell"></span>
+                  </a>
+                </li>
+
+                   </ul>
+
+             <form class="navbar-form navbar-left" role="search" method="get"  action="{% url 'discover:filter2' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typehead" id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+                </div>
+                  
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'boutique:create_boutique' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Boutique
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'authontication:logout_user' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
+<div class="col-md-2" >
+<div class="filter"  >
+
+
+
+
+
+<br />
+
+        <form class="navbar-form navbar-left"  method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+              <select style="width: 200px;margin-top: 50px;"  name="catego"  id="selectPointOfInterest" title="Select points of interest nearby">
+              <option value="all">all categorie</option>
+                                  <option value="bijoux " >bijoux({{ bijoux }})</option>
+                                  <option value="maison et ameublement">Maison et Ameublement({{ maison }})</option>
+              <option value="vetements ">Vetements({{ vetements }}) </option>
+                                  <option value="art et collections">Art et collections({{ art }})</option>
+              <option value="accessoires ">Accessoires({{ accessoires }}) </option>
+                        <option value="sacs et bagages">Sacs et Bagages({{ sac }})</option>
+              <option value="mariage ">Mariage({{ mariage }})</option>
+              </select>
+
+              <button type="submit" class="btn btn-default" >categorie</button>
+              <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+        </form>
+
+ 
+              
+      <form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+
+           <select style="width: 200px;" name="type" id="selectPointOfInterest" title="Select points of interest nearby"/>
+          <option value="all">All type</option> 
+                              <option value="fait a la main">Fait à la main</option>
+                              <option value="vintage">Vintage</option>
+                       
+                      </select>
+
+
+                      <button type="submit" class="btn btn-default" >type</button>
+
+          <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+          <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+
+      </form>
+
+
+
+        <form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}?{% for key, value in request.GET.items %}&{{ key }}={{ value }}{% endfor %}">
+
+               <select style="width: 200px;" name="order" id="selectPointOfInterest" title="Select points of interest nearby"/>
+
+                                  <option value="croissanttime">plus ancien</option>
+                                  <option value="decroissanttime">plus recent</option>
+                     <option value="croissantprix">croissant prix</option>
+                                  <option value="decroissantprix">decroissant prix</option>      
+                          </select>
+
+
+
+                          <button type="submit" class="btn btn-default" >order time</button>
+
+              <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+              <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+              <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+
+        </form>
+
+
+
+            <form class="navbar-form navbar-left" method="get" action="{% url 'discover:filter2' %}">
+                <b>0 Dt</b> <input id="ex2" type="text" class="span2" value=""  name="b" data-slider-min="10" data-slider-max="1000" data-slider-step="1" /> <b> 1000</b>
+                <input type="submit" data-inline="true" value="Submit" >
+                <input type="hidden" name="catego" value="{{ request.GET.catego }}"/>
+                <input type="hidden" name="type" value="{{ request.GET.type }}"/>
+                <input type="hidden" name="recherche" value="{{ request.GET.recherche }}"/>
+                <input type="hidden" name="order" value="{{ request.GET.order }}"/>
+            </form>
+
+         
+
+            <div class="col-md-3">
+                  <div class="row">
+                  <div class="small-10 columns">
+                  <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+                  <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                  <span class="range-slider-active-segment"></span>
+                  </div>
+                  </div>
+                  <div class="col-sm-offset-1">
+                  <input type="number" style="width: 50px" id="days-off-count" value="{{ minslider }}" />
+                  </div>
+                  </div>
+              </div>
+
+        <div class="col-md-3">      
+              <div class="row">
+              <div class="small-10 columns">
+              <div class="range-slider" data-slider data-options="display_selector: #days-off-count; initial: 28;">
+              <span class="range-slider-handle" role="slider" tabindex="0"></span>
+              <span class="range-slider-active-segment"></span>
+              </div>
+              </div>
+              <div class="col-sm-offset-10">
+              <input type="number" id="days-off-count" style="width: 50px" value="{{ maxslider }}" />
+              </div>
+              </div>
+        </div>
+</div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+ var slider = new Slider('#ex2', {
+      min: {{ minslider }},
+      max: {{ maxslider }},
+      value: [5, 1000],
+  })
+ 
+
+   </script>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 5000);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+<div class="col-md-10 ">
+{% block body %}
+
+
+  
+
+  <div class="row" style="padding-bottom:20px;width:1050px;margin-top: 55px;">
+     {% for produit in produits_boutique %}
+ 
+<div class="col-md-3" style="padding-right: 5px:">
+<div class="thumbnail" style="height:550px">
+{{produit.title}}
+<div class="promo"><h3>
+{% if produit in products %}
+
+{% for h in promo %}
+
+{% if h.produit == produit %}
+
+{% if h.type == "flash" %}
+<div class="product-{{h.produit.id}}">
+<span class="clock" year="{{h.end.year }}" month="{{h.end.month}}" day="{{h.end.day}}" hour="{{h.end.hour}}" minut="{{h.end.minute}}" second="{{h.end.second}}"></span>
+
+</div>
+<script type="text/javascript">
+  clock($('.product-{{h.produit.id}}'));
+</script>
+<div class="up1" data_day="{{h.end}}" data_time="{{ h.end.time }}">
+   <span class="label label-success">flashe%</span>
+   <div class="time-elapsed"></div>
+   <span class="label label-success">{{h.discount }}%</span>
+
+</div>
+{% else %}
+   <span class="label label-success">{{h.discount }}%</span>
+{% endif %}
+
+
+{% endif %}
+{%endfor%}
+
+{%else%}
+<div class="up1">
+   <span class="label label-success">.</span>
+   <span class="label label-success">.</span>
+   <span class="label label-success">.</span>
+</div>
+{%endif%}
+</h3></div>
+<a href="{% url 'discover:detail_produitdescover' produit.id %}">
+           <img src="{{ produit.logo.url }}"  style="width:200px;height:200px;" class="img-responsive">
+</a>
+
+
+<span class="price price-green">{{produit.prix }}DT </span>
+ <div>{{ produit.dat }}</div>
+
+  
+ 
+<h5>{{ user }}</h5>
+
+  
+
+
+          <a href="{% url 'new_message' %}?ob={{produit.title}}&too={{ produit.boutique.user }}&url={{ produit.id }}&boutic={{produit.boutique.id}}" >contact</a>
+
+                   <div class="like-container">
+
+</div>
+
+<div class="aaa" data-id0="{{produit.id}}">
+
+</div>
+{% include "reaction/reaction.html" %}
+
+
+<button id="share-buttons">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/boutique/produit/{{produit.id}}" class="popup"><img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+</button>
+
+
+
+</div>
+</div>
+
+
+{% endfor %} 
+</div> 
+</div> 
+{% include "produit/pagination.html" with page=produitsfilters %}
+
+
+<script src="{% static 'notification/js/check_notification.js' %}"></script>
+
+{% endblock %}
+</div>
+
+<script type="text/javascript" src="{% static 'reaction/js/likers_popup.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'reaction/js/reactions.js' %}"></script>
+ 
+
+
+</body>
+
+</html>

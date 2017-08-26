@@ -1,0 +1,125 @@
+{% extends 'produit/base.html' %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+    
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12" style="margin-top: 100px">
+            <h3>{{ user.username }}'s Albums</h3>
+        </div>
+        {% if boutiques %}
+            {% for boutique in boutiques %}
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="{% url 'discover:visite_boutique' boutique.id %}">
+                            <img src="{{ boutique.logo.url }}" style="margin-top: 100px" class="img-responsive">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ boutique.name }}</h2>
+
+
+                            <!-- View Details -->
+                            <a href="{% url 'boutique:detail' boutique.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                                  <a href="{% url 'album:formulaire' boutique.id %}" class="btn btn-primary btn-sm" role="button">create album</a>
+
+
+                            <!-- Delete Album -->
+
+                            <form action="{% url 'boutique:delete_boutique' boutique.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="boutique_id" value="{{ boutique.id }}" />
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                             </form>
+                            <!-- Favorite Album -->
+
+
+                        </div>
+                    </div>
+                </div>
+<div class="col-md-4">
+
+<div class="panel panel-default" style="width: 200px">
+                <div class="panel-body">
+<form action="{% url 'boutique:detail' boutique.id %}" style="width: 100px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class=" glyphicon glyphicon-circle-arrow-right"></span>&nbsp; Produits
+        </button>
+</form>
+<br>
+<form action="{% url 'collection' %}" style="width: 100px;height: 50px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class=" glyphicon glyphicon-circle-arrow-right"></span>&nbsp; Collections
+        </button>
+</form>
+<br>
+
+<form action="{% url 'promotion:promotions' boutique.id %}" style="width: 100px;height: 50px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class=" glyphicon glyphicon-circle-arrow-right"></span>&nbsp; Promotions
+        </button>
+</form>
+</div>
+</div>
+<li role="presentation"><a href="{% url 'collection:formulaire_collection' %}">Add New Collection</a></li>
+<li role="presentation"><a href="{% url 'boutique:create_produit' boutique.id %}">Add New Produit</a></li>
+<li role="presentation"><a href="{% url 'promotion:formulaire' %}">Add New Promotion</a></li>
+</div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'authontication:business_register' %}">
+
+
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add one Boutique
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+<div id="txt" style="width: 100px;height: 100px;color: red">aa</div>
+    <!-- If user searches and there are songs -->
+    {% if produits %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Songs</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Song Title</th>
+                                    <th>Artist</th>
+
+                                    <th>Album</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

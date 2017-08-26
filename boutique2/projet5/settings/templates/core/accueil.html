@@ -1,0 +1,61 @@
+accueil.html{% extends 'core/base.html' %}
+{% load i18n %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block main %}
+  
+
+
+
+
+<div class="col-md-3">
+
+<img src="{{page_user.profile.get_picture}}" style="width: 250px">
+      {% include 'core/partial_settings_menu.html' with active='profile' %}
+    </div>
+
+<div class="col-offset-3">
+ <div class="col-md-6">
+ <h2>Products of all shops</h2>
+{% for produit in produits%}
+
+<div class="col-md-3">
+{{produit.title}}
+<img src="{{produit.logo.url}}" style="width: 150px">
+</div>
+
+{%endfor%}  
+  </div>
+ <div class="col-md-3">
+ <h2>all shops</h2>
+{% for boutique in boutiques%}
+
+<div class="col-md-3">
+{{boutique.name}}
+<img src="{{boutique.logo.url}}" style="width: 250px">
+</div>
+
+{%endfor%} 
+ </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main %}

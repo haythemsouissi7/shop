@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>{% block title %}Viberr{% endblock %}</title>
+
+{% load i18n %}
+{% load humanize %}
+{% load staticfiles %}
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/css_left.css' %}"/> 
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/price_cercle.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/jquery.mobile-1.4.5.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/bootstrap.min2.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/style.css' %}"/>
+
+<link href="{% static 'notification/css/notification.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'notification/css/labell.css' %}?v=1" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootcamp.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/fonts.googleapis.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/w3_4.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/Raleway.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/import/font-awesome.min.css' %}"/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/tooltyptext.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'produit/css/slider/bootstrap-slider.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'discover/css/css.css' %}"/>
+
+<script type="text/javascript" src="{% static 'produit/js1/slider/import/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'produit/js1/autocomplit_jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'produit/js1/slider/slider.js' %}"></script>
+<script src="{% static 'produit/js1/main.js' %}"></script>
+<script src="{% static 'js/check_messages.js' %}"></script>
+
+ 
+
+<script src="{% static 'js/countdoun.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.js' %}"></script>
+<script src="{% static 'js/clock.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script type="text/javascript"></script>
+
+
+<script src="{% static 'produit/js1/typehead.js' %}"></script>
+
+</head>
+
+<body >
+
+{% include 'discover/navbare.html'%}
+{% include 'discover/filter.html'%}
+
+
+<script type="text/javascript">
+ var slider = new Slider('#ex2', {
+      min: {{ minslider }},
+      max: {{ maxslider }},
+      value: [5, 1000],
+  })
+
+   </script>
+
+<div class="col-md-10 ">
+{% block body %}
+
+
+  
+
+  <div class="row" style="padding-bottom:20px;width:1050px;margin-top: 55px;">
+     {% for produit in produitsfilters %}
+ 
+<div class="col-md-3" style="padding-right: 5px:">
+<div class="thumbnail" style="height:550px">
+{% if produit in produit_in_collection %}
+<span class="label label-success">New</span>
+
+{% for promotion in promo %}
+{% for prod in promotion.collection.produit.all%}
+{%if prod == produit %}
+{% if promotion.promo_type == "flash" %}
+<div class="product-{{h.produit.id}}">
+
+<span class="clock" year="{{promotion.end.year }}" month="{{promotion.end.month}}" day="{{promotion.end.day}}" hour="{{promotion.end.hour}}" minut="{{promotion.end.minute}}" second="{{promotion.end.second}}"></span>
+
+</div>
+<script type="text/javascript">
+  clock($('.product-{{h.produit.id}}'));
+</script>
+<div class="up2" data_day="{{promotion.end}}" data_time="{{ promotion.end.time }}">
+   <span class="label label-success">flashe</span>
+   <div class="time-elapsed"></div>
+   <span class="label label-success">{{promotion.discount }}%</span>
+
+</div>
+{% else %}
+   <span class="label label-success">{{h.discount }}%</span>
+{% endif %}
+{%endif%}
+
+{%endfor%}
+
+{%endfor%}
+
+
+{%endif%}
+
+
+
+
+
+{{produit.title}}
+
+<div class="promo"><h3>
+{% if produit in products %}
+
+
+
+
+{% for h in promo %}
+
+{% if h.produit == produit %}
+
+{% if h.promo_type == "flash" %}
+<div class="product-{{h.produit.id}}">
+<span class="clock" year="{{h.end.year }}" month="{{h.end.month}}" day="{{h.end.day}}" hour="{{h.end.hour}}" minut="{{h.end.minute}}" second="{{h.end.second}}"></span>
+
+</div>
+<script type="text/javascript">
+  clock($('.product-{{h.produit.id}}'));
+</script>
+<div class="up2" data_day="{{h.end}}" data_time="{{ h.end.time }}">
+   <span class="label label-success">flashe</span>
+   <div class="time-elapsed"></div>
+   <span class="label label-success">{{h.discount }}%</span>
+
+</div>
+{% else %}
+   <span class="label label-success">{{h.discount }}%</span>
+{% endif %}
+
+
+{% endif %}
+{%endfor%}
+
+{%else%}
+
+{%endif%}
+</h3></div>
+<a href="{% url 'discover:detail_produitdescover' produit.id %}">
+           <img src="{{ produit.logo.url }}"  style="width:200px;height:200px;" class="img-responsive">
+</a>
+
+
+<span class="price price-green">{{produit.prix }}DT </span>
+ <div>{{ produit.dat }}</div>
+
+  
+
+
+  
+
+
+          <a href="{% url 'new_message' %}?ob={{produit.title}}&too={{ produit.boutique.user }}&url={{ produit.id }}&boutic={{produit.boutique.id}}" >contact</a>
+
+                   <div class="like-container">
+
+</div>
+
+<div class="aaa" data-id0="{{produit.id}}">
+
+</div>
+{% include "reaction/reaction.html" %}
+
+
+<button id="share-buttons">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/boutique/produit/{{produit.id}}" class="popup"><img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+</button>
+
+
+
+</div>
+</div>
+
+
+{% endfor %} 
+</div> 
+</div> 
+{% include "produit/pagination.html" with page=produitsfilters %}
+
+
+<script src="{% static 'notification/js/check_notification.js' %}"></script>
+
+{% endblock %}
+</div>
+
+<script type="text/javascript" src="{% static 'reaction/js/likers_popup.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'reaction/js/reactions.js' %}"></script>
+ 
+
+
+
+
+
+
+
+
+
+<script src="{% static 'js/clock_load.js' %}"></script>
+
+
+
+<script>
+
+// function getTimeRemaining(endtime) {
+//   var t = Date.parse(endtime) - Date.parse(new Date());
+//   var seconds = Math.floor((t / 1000) % 60);
+//   var minutes = Math.floor((t / 1000 / 60) % 60);
+//   var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+//   var days = Math.floor(t / (1000 * 60 * 60 * 24));
+//   return {
+//     'total': t,
+//     'days': days,
+//     'hours': hours,
+//     'minutes': minutes,
+//     'seconds': seconds
+//   };
+// }
+
+// function initializeClock(id, endtime) {
+//   var clock = document.getElementById(id);
+//   var daysSpan = clock.querySelector('.days');
+//   var hoursSpan = clock.querySelector('.hours');
+//   var minutesSpan = clock.querySelector('.minutes');
+//   var secondsSpan = clock.querySelector('.seconds');
+
+//   function updateClock() {
+//     var t = getTimeRemaining(endtime);
+
+//     daysSpan.innerHTML = t.days;
+//     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+//     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+//     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+//     if (t.total <= 0) {
+//       clearInterval(timeinterval);
+//     }
+//   }
+
+//   updateClock();
+//   var timeinterval = setInterval(updateClock, 1000);
+// }
+
+// var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+// initializeClock('clockdiv', deadline);
+
+
+</script>
+
+<script type="text/javascript">
+  // $("#getting-started")
+  // .countdown("2018/08/22 11:34:56", function(event) {
+  //   $("#h").text(
+  //     event.strftime('%H:')
+  //   );
+  //     $("#m").text(
+  //     event.strftime('%M:')
+  //   );
+  //     $("#s").text(
+  //     event.strftime('%S')
+  //   );
+  // });
+</script>
+
+
+<script>
+
+
+
+// var year=$('.clock').attr('year');
+// var month=$('.clock').attr('month');
+// var day=$('.clock').attr('day');
+// var hour=$('.clock').attr('hour');
+// var minut=$('.clock').attr('minut');
+// var second=$('.clock').attr('second');
+
+
+// //alert(year +'/'+ month+'/'+day+' '+hour+':'+minut+':'+second);
+
+// $('.clock').countdown($('.clock').attr('year') +'/'+ $('.clock').attr('month')+'/'+$('.clock').attr('day')+' '+$('.clock').attr('hour')+':'+$('.clock').attr('minut')+':'+$('.clock').attr('second'))
+// .on('update.countdown', function(event) {
+//   var format = '%H:%M:%S';
+//   if(event.offset.totalDays > 0) {
+//     format = '%-d day%!d ' + format;
+//   }
+//   if(event.offset.weeks > 0) {
+//     format = '%-w week%!w ' + format;
+//   }
+//   $(this).html(event.strftime(format));
+// })
+// .on('finish.countdown', function(event) {
+//   $(this).html('This offer has expired!')
+//     .parent().addClass('disabled');
+
+// });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+.typeahead, .tt-query, .tt-hint {
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  font-size: 1.2em;
+  height: 35px;
+  line-height: 35px;
+  outline: medium none;
+  padding: 4px 12px;
+  width: 300px;
+}
+.typeahead {
+  background-color: #FFFFFF;
+}
+.typeahead:focus {
+  border: 2px solid #0097CF;
+}
+.tt-query {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+  color: #999999;
+}
+.tt-dropdown-menu {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+  padding: 8px 0;
+  width: 300px;
+}
+.tt-suggestion {
+  font-size: 1.2em;
+  line-height: 24px;
+  padding: 3px 20px;
+}
+.tt-suggestion.tt-cursor {
+  background-color: #0097CF;
+  color: #FFFFFF;
+}
+.tt-suggestion p {
+  margin: 0;
+}
+.price.price-green {
+    background-color: #3366ff;
+    color: #ffffff;
+}
+.price.price-vert {
+    background-color: #3366ff;
+    color: red;
+}
+ .price {
+    border-radius: 100%;
+    cursor: default;
+    display: block;
+    float: left;
+    height: 46px;
+    line-height: 46px;
+    margin: 8px 10px 0 0;
+    text-align: center;
+    width: 46px;}
+
+
+ul-a {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}

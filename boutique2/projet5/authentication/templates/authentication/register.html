@@ -1,0 +1,37 @@
+{% extends 'authentication/base_visitor.html' %}
+{% block title %}Register{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block body %}
+     <div class="login-box">
+        <div class="lb-header">
+            <a href="{% url 'authontication:login_user' %}" class="active" id="login-box-link">Login</a>
+            <a href="{% url 'authontication:register' %}" id="signup-box-link">Sign Up</a>
+        </div>
+
+
+
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="u-form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                        {% include 'produit/form-template.html' %}
+                        </div>
+                            </div>
+                        <div class="u-form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+{% endblock %}
+

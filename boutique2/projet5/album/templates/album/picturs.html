@@ -1,0 +1,104 @@
+{% extends 'produit/base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+<style type="text/css">
+    .images{
+    width: 1000px;
+
+}
+.pictur{
+    width: 320px;
+}
+</style>
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid songs-container">
+
+
+
+
+
+
+
+
+{% if request.user == album.user%}
+<form action="{% url 'album:add_picture' album.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+<div id="contenu">
+ <div id="image">
+         <input type='file' id="files" style="" name="picture" onchange="readURL(this);" value="" />
+         
+    <img id="blah" src="#" style="width:200 ;height:150;margin-top: 100px; "   alt="your image" />
+    <button type="button" id="change" style="margin-top: 70px"  >choice </button>
+</div>
+</div>
+
+ <button type="submit" class="save btn btn-default" style="margin-top: 5px">Submit </button>
+
+</form>
+{% endif%}
+        <!-- Left Album Info -->
+      
+        <!-- Right Song Info -->
+        
+
+           
+
+         
+
+                    <h3>Picturs</h3>
+ 
+
+           {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                   <div class="images">
+                   
+                        {% for picture in picturs %}
+{% if picture.logo%}
+<img src="{{ picture.logo.url}}" style="width:300px;height:300px;padding-bottom: 40px;">
+
+{%endif%}
+                        {% endfor %}
+                       
+</div>
+
+</div></div>
+
+
+<script type="text/javascript">
+
+    
+        $('#change').click(function(){
+            $('#files').click();
+        });
+
+  
+</script>
+
+
+<script >
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+
+
+{% endblock %}

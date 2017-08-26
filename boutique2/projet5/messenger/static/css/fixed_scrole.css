@@ -1,0 +1,9 @@
+ .conversations {
+
+max-height: 550px;
+    overflow: auto;
+      
+  left: 0;
+  width: 520px;
+ 
+  }

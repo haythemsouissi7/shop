@@ -1,0 +1,152 @@
+
+
+
+{% extends 'messenger/base_messages.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Inbox' %}{% endblock %}
+
+{% block page_header %}{% trans 'Inbox' %}{% endblock %}
+
+{% block containers %}
+  {% if messages %}
+  <ul class="conversations">
+    {% for message in messages %}
+      {% include 'messenger/includes/partial_message.html' with message=message %}
+    {% endfor %}
+    <li class="send-message">
+      <div class="col-md-1">
+
+      <img src="{{ user.profile.get_picture }}" style="width: 40px" class="picture">
+      </div>
+       <div class="col-md-10">
+
+      <div style="margin-top: .3em">
+        <form role="form" method="post" action="{% url 'send_message' %}" id="send">
+          {% csrf_token %}
+          <input type="hidden" name="to" value="{{ active }}">
+          <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
+        </form>
+      </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="col-md-2">
+
+<form class="form-horizontal" id="attache" enctype="multipart/form-data" csrf="{{csrf_token}}">
+                        {% csrf_token %}
+                     
+                      <div class="form-group">
+                 <label for="picture" class="glyphicon glyphicon-paperclip" style="background: #ffffff"></label>
+
+                <input type="file" required id="picture" name="image" style="display: none;" >
+                       
+
+        <input class="form-control typeahead" type="hidden" id="to" name="to1" value="{{active}}">
+         
+         <input type="hidden" name="url" value="{{ request.GET.url}}"/>
+    
+
+                <button type="submit" class="btn btn-success">Submit</button>
+
+            </div>
+                    </form>
+                  
+</div>
+<div class="col-md-6">
+     <button type="button"  class="btn btn-success" data-toggle="modal" data-target="#myModals">product</button>
+ 
+</div>
+              
+  <!-- Modal -->
+  <div class="modal fade" id="myModals" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">all pdoducts</h4>
+            <form class="navbar-form navbar-left" role="search" method="get"  action="{% url 'search_modal' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typehead" id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+
+                    <input type="hidden" class="form-control typehead" id="to" name="to" value="{{ request.GET.too }}">
+                </div>
+                  
+               
+            </form>
+
+        </div>
+        <div class="modal-body3" id="modal-body3">
+           <table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>product name!!!</th>
+
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                       {% for produit in produituser %}
+                         <div>   <tr>
+                            
+<td><a href="{% url 'discover:detail_produitdescover' produit.id %}">
+                                                <img src="{{ produit.logo.url }}"  style="width:100px;height:100px;" class="img-responsive">
+</a></td>
+<td><div>{{produit.title}}  </div>
+          
+<form  method="post" action="{% url 'send2' %}" class="send_product_inbox" enctype="multipart/form-data" csrf="{{csrf_token}}">
+          {% csrf_token %}
+          <input type="hidden" name="to" id="to" value="{{ request.GET.too }}">
+          <input type="hidden" name="objet" value="{{ produit.title}}">
+          <input type="hidden" name="url" class="url" value="{{ produit.id }}">
+          
+     
+           <button type="submit" class="btn btn-success">Sendtest</button>
+
+  </form>
+      
+
+       
+
+        </td></tr></div>
+
+
+{% endfor %}
+
+</tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</tr>
+</div>
+
+
+  {% else %}
+    <h4>Your inbox is empty!</h4>
+  {% endif %}
+ 
+
+
+
+
+<script type="text/javascript">
+  $(".conversations").scrollTop($(".conversations")[0].scrollHeight);
+</script>
+<script src="{% static 'js/check_message.js' %}"></script>
+<script src="{% static 'js/attach_image.js' %}"></script>
+<script src="{% static 'js/search_product_inbox.js' %}"></script>
+<script src="{% static 'js/send_product.js' %}"></script>
+{% endblock containers %}

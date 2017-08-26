@@ -1,0 +1,108 @@
+{% extends 'produit/base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+<style type="text/css">
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+</style>
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+       
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                 </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Products of the Collection</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>product name</th>
+
+                            
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for produit in produits %}
+                            <tr>
+                            <td><div class="col-md-6"><img src="{{ produit.logo.url }}" style="width:100px;height:100px;"></div></td>
+                                <td>{{ produit.title }} </td>
+
+<td>
+
+                  
+
+
+
+ <div class="songs-container">
+  {{ collection.is_active}}</div>
+                                </td>
+
+                              <td>
+
+
+
+                                         <div>
+         
+
+
+<a href="{% url 'discover:detail_produit' produit.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+
+
+
+
+<!--  if produit activé permission de detailler-->
+
+
+
+</div>
+
+
+
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+   <script src="{% static 'produit/js1/activer.js' %}"></script>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

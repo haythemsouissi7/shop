@@ -1,0 +1,179 @@
+{% extends 'produit/base.html' %}
+{% block title %}{{ Boutique }}{% endblock %}
+{% block boutiques_active %}active{% endblock %}
+<style type="text/css">
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+</style>
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3" style="margin-top: 100px">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'boutique:detail' boutique.id %}">
+                        {% if boutique.logo %}
+                            <img src="{{ boutique.logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ boutique.name }} </h1>
+
+                </div>
+
+
+
+<div class="panel panel-default">
+                <div class="panel-body">
+                <form action="{% url 'boutique:detail' boutique.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:35px"></span>&nbsp; Produits
+        </button>
+</form>
+<br>
+<form action="{% url 'collection' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:20px"></span>&nbsp; Collections
+        </button>
+</form>
+<br>
+<form action="{% url 'promotion:promotions' boutique.id %}" style="width: 100px;height: 50px" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" style="width: 120px;" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" style="width:20px"></span>&nbsp; Promotions
+        </button>
+</form>
+</div></div>
+
+
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                 </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All Products</h3>
+<li role="presentation"><a href="{% url 'boutique:create_produit' boutique.id %}">Add New Produit</a></li>
+
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>product name</th>
+
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for produit in produits1 %}
+                            <tr>
+                            <td><div class="col-md-6"><img src="{{ produit.logo.url }}" style="width:100px;height:100px;"></div></td>
+                                <td>{{ produit.title }} </td>
+
+<td>
+
+                        <!--<input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> -->
+
+<!-- 
+                                   {% if produit.etat == 'active' %}<a href="{% url 'boutique:activer' produit.id %}" class="btn-favorite"><span class="glyphicon glyphicon-ok "></span></a>
+                                   {% else %}<a href="{% url 'boutique:activer' produit.id %}" class="btn-favorite"><span class="glyphicon glyphicon-remove "></span></a>
+                                   {% endif %}
+
+
+ -->
+ <div class="songs-container">
+  <a href="{% url 'boutique:activer' produit.id %}" class="btn-favorite"><span class="glyphicon glyphicon-star {% if produit.etat == 'active' %}active{% endif %}"></span></a></div>
+                                </td>
+
+                              <td>
+
+
+
+                                         <div>
+          <a href="{% url 'discover:detail_produit' produit.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+
+<form action="{% url 'boutique:delete_produit' produit.boutique.id produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" onclick="return confirm('etes vous sur de supprimer ???? ')">
+            <span class="glyphicon glyphicon-eye-open"></span>&nbsp; Delete
+        </button>
+</form>
+<form action="{% url 'boutique:duppliquer' produit.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-duplicate"></span>&nbsp; duppliquer
+        </button>
+</form>
+<form action="{% url 'boutique:modifier' produit.id  %}" method="get" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="song_id" value="{{ produit.id }}" />
+        <button type="submit" class="btn btn-default" >
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;modifier
+        </button>
+</form>
+
+
+
+
+<!--  if produit activé permission de detailler-->
+
+
+
+</div>
+
+
+
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+   <script src="{% static 'produit/js1/activer.js' %}"></script>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

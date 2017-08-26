@@ -1,0 +1,85 @@
+
+<div class="container"  >
+
+  <!-- Trigger the modal with a button -->
+ 
+ 
+
+             
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog"  >
+    <div class="modal-dialog" style="" >
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="width: 600px;height: 600px">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+           
+            
+        </div>
+        <div class="modal-body" id="modal-body2">
+          
+
+
+
+
+
+
+
+
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login form using HTML5 and CSS3</title>
+  {% load staticfiles %}
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}"/>
+     
+
+  
+</head>
+
+<body>
+  <body>
+<div class="container" style="padding-right: 950px;">
+  <section id="content" >
+    <form class="email-login"  action="{% url 'authontication:login_descover' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <h1>Login Form</h1>
+      <div>
+        <input  maxlength="30"   name="username" type="text" placeholder="username">
+      </div>
+      <div>
+        <input  maxlength="30" placeholder="password" name="password" type="password">
+      </div>
+      <div>
+        <input type="submit" value="Log in" />
+        
+        <a href="{% url 'authontication:register' %}">Register</a>
+      </div>
+    </form><!-- form -->
+    <div class="button">
+      
+    </div><!-- button -->
+  </section><!-- content -->
+</div><!-- container -->
+</body>
+  <script src="{% static 'login/js/index.js' %}"></script>
+   
+
+</body>
+</html>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>

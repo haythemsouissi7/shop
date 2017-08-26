@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+  <link href="{% static 'css/messages.css' %}" rel="stylesheet">
+      <link href="{% static 'css/fixed_scrole.css' %}" rel="stylesheet">
+  <script src="{% static 'js/messages.js' %}"></script>
+  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+  <script src="{% static 'js/search_modal.js' %}"></script>
+  
+
+  <style type="text/css">
+body {
+    overflow:auto;
+}
+</style>
+{% endblock head %}
+
+{% block main %}
+  
+
+
+
+
+
+
+ 
+    <h1>{% block page_header %}{% endblock %}</h1>
+
+  <div class="row" style="margin-top: 1em">
+   
+    <div class="col-md-3">
+      {% include 'messenger/includes/partial_conversations.html' with conversations=conversations active=active %}
+    </div>
+   
+    <div class="col-md-6">
+      {% block containers %}
+      {% endblock containers %}
+    </div>
+    
+  </div>
+{% endblock main %}

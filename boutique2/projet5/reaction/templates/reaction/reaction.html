@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<div id="reaction_{{produit.id}}">
+
+<span class="reactions">({{produit.get_number }})</span>
+<br>
+<div class="col-md-1" id="tooltip_normal" >
+<button data-toggle="modal" data-target="#myModal" id="normalb{{ produit.id }}" data-id="{{ produit.id }}" data-reaction="normal" class="reaction-button normal">
+  <span id="normals" class="tooltiptext1">{{produit.get_normal}}</span> <img src="{% static 'produit/images1/normal.png' %}" alt="" width="25" height="25" >
+</button>
+</div>
+
+
+
+
+<div class="col-md-1" id="tooltip_smile">
+<button data-toggle="modal" data-target="#myModal"  id="smileb{{ produit.id }}" data-id="{{ produit.id }}" data-reaction="smile" class="reaction-button smile">
+  <span id="smile" class="tooltiptext2">{{produit.get_smile}}</span> <img src="{% static 'produit/images1/smile.png' %}" alt="" width="25" height="25">
+</button>
+</div>
+
+<div class="col-md-1" id="tooltip_love">
+<button data-toggle="modal" data-target="#myModal" id="loveb{{ produit.id }}" data-id="{{ produit.id }}" data-reaction="love" class="reaction-button love">
+   <span id="love" class="tooltiptext3">{{produit.get_love}}</span> <img src="{% static 'produit/images1/love.png' %}" alt="" width="25" height="25">
+</button>
+</div>
+
+<div class="col-md-1" id="tooltip_wish">
+<button data-toggle="modal" data-target="#myModal" id="wishb{{ produit.id }}" data-id="{{ produit.id }}" data-reaction="wish" class="reaction-button wish">
+   <span id="wish" class="tooltiptext4">{{produit.get_wish}}</span> <img src="{% static 'produit/images1/wish.png' %}" alt="" width="25" height="25">
+</button>
+</div>
+
+</div>
+<br>
+<div align="center">
+<!--  Add the class attribute to your links as below  -->
+<a href="{% url 'Nreaction' produit.id %}" class="popup">all likers</a><br>
+
+</div>

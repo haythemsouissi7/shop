@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login form using HTML5 and CSS3</title>
+  {% load staticfiles %}
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}"/>
+     
+
+  
+</head>
+
+<body>
+  <body>
+<div class="container">
+  <section id="content" style="width: 700px;height: 500px">
+    <form class="email-login"  action="{% url 'authontication:login_descover' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <h1>Login Form</h1>
+      <div>
+        <input  maxlength="30" style="margin-top: 100px"  name="username" type="text" placeholder="username">
+      </div>
+      <div>
+        <input  maxlength="30" placeholder="password" name="password" type="password">
+      </div>
+      <div>
+        <input type="submit" value="Log in" />
+        
+        <a href="{% url 'authontication:register' %}">Register</a>
+      </div>
+    </form><!-- form -->
+    <div class="button">
+      
+    </div><!-- button -->
+  </section><!-- content -->
+</div><!-- container -->
+</body>
+  <script src="{% static 'login/js/index.js' %}"></script>
+   
+
+</body>
+</html>

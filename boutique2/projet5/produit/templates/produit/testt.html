@@ -1,0 +1,63 @@
+<table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>product name</th>
+
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                       {% for produit in produituser %}
+                         <div>   <tr>
+                            
+<td><a href="{% url 'boutique:detail_produitdescover' produit.id %}">
+                                                <img src="{{ produit.logo.url }}"  style="width:100px;height:100px;" class="img-responsive">
+</a></td>
+<td><div>{{produit.title}}  </div>
+          
+<form  method="post"  action="{% url 'send2' %}" class="send4"  enctype="multipart/form-data" csrf="{{csrf_token}}">
+          {% csrf_token %}
+          <input type="text" name="to" id="to" value="{{ too }}">
+          <input type="hidden" name="objet" value="{{ produit.title}}">
+          <input type="hidden" name="url" class="url" value="{{ produit.id }}">
+          
+     
+           <button type="submit" class="btn btn-success">Sendtest</button>
+
+  </form>
+      
+
+       
+
+        </td></tr></div>
+
+
+{% endfor %}
+
+
+</tbody></table>
+
+<script type="text/javascript">
+          
+$(function () {
+  $(".send4").submit(function () {
+    
+    $.ajax({
+
+      url: '/messages/sendd/',
+      data: $(this).serialize(),
+      cache: false,
+      type: 'post',
+      success: function (data) {
+        alert("message succes0000")
+        $(".send-message").before(data);
+        $("input[name='message']").val('');
+        $("input[name='message']").focus();
+      }
+    });
+    return false;
+  });
+});
+</script>

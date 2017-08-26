@@ -1,0 +1,66 @@
+<div class="pagination">
+<span class="step-links">
+
+
+
+<head>
+<style>
+nav-aa {
+    position: absolute;
+
+    bottom: 0px;
+    left: 580px;
+    top: 1150px;
+}
+
+</style>
+</head>
+
+
+
+
+
+
+<nav-aa aria-label="Page navigation">
+ {% if page.has_other_pages %}
+   <ul class="pagination">
+
+       {% if page.has_previous %}
+                 <li>   <a href= "/discover/produits1/?page={{ page.previous_page_number }}&{{ filters }}">&laquo;</a></li>
+        {% else %} <li class="disabled"><span>&laquo;</span> </li>
+          {% endif %}
+    {% for pages in page.paginator.page_range %}
+      {% if page.number == pages %}
+                <li class="active"><span>{{page}}</span></li>
+       {% else %}
+         <li><a href="?page={{pages}}">{{pages}}</a></li>
+
+         {% endif %}
+    {% endfor %}
+
+                {% if page.has_next %}
+                  <li>  <a href="/discover/produits1/?page={{ page.next_page_number }}&{{ filters }} ">&raquo;</a></li>
+                   {% else %} <li class="disabled"><span>&raquo;</span> </li>
+                {% endif %}
+
+
+
+ {% endif %}
+
+
+   </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</nav-aa>
+</span>
+</div>

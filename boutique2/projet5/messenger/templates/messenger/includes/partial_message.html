@@ -1,0 +1,37 @@
+<div>
+<div class="col-md-1">
+  <img src="{{ message.from_user.profile.get_picture }}" style="width: 40px" class="picture">
+ </div>
+ <div class="col-md-11">
+ <a href="{% url 'profile' message.from_user.username %}">
+        {{ message.from_user.profile.get_screen_name }}
+      </a>
+</div>
+
+  <div>
+    <h5>
+      <small class="pull-right">
+        {{ message.date|date:'N d G:i' }}
+      </small>
+    <div class="col-md-1">
+    </div>
+    <br>  
+    </h5>
+    <br><br> <div class="col-md-1">
+    </div>
+    {% if message.produit %}
+  
+                                                <img src="{{ message.produit.logo.url }}"  style="width:80px;height:80px;" class="img-responsive">
+{%if message.objet%}
+    <h5>produit: {{message.objet}}<br></h5>
+    {%endif%}
+    {{ message.message }}
+    {%elif message.attache%}
+    <img src="{{ message.attache.image.url }}" style="width:80px;height:80px;" class="img-responsive">
+    
+ 
+ {% else %}
+  {{ message.message }}
+ {% endif %}
+  </div>
+</div>

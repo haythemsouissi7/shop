@@ -1,0 +1,156 @@
+<style type="text/css">
+  .modal-body{
+max-height: 250px;
+    overflow: auto;
+  }
+</style>
+{% load i18n %}
+
+<div class="list-group">
+  {% comment %}
+  <a href="{% url 'inbox' %}" class="list-group-item{% if active == 'inbox' %} active{% endif %}">
+    <span>{% trans 'Inbox' %}</span>
+    <span class="badge">0</span>
+  </a>
+  {% endcomment %}
+
+
+<div class="container">
+  <h2>Products</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+ 
+
+              <form class="form-horizontal" role="form" action="{% url 'boutique:attache_image' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                     
+                      <div class="form-group">
+                <label for="picture">Picture</label>
+
+                <input type="file" required id="picture" name="image" class="form-control">
+                        <input class="form-control typeahead" type="hidden" id="to" name="to" value="{{request.GET.too}}">
+
+                <button type="submit" class="btn btn-success">Submit</button>
+
+            </div>
+                    </form>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">all pdoduct</h4>
+            <form class="navbar-form navbar-left" role="search" method="get"  action="{% url 'search_modal' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control typehead" id="recherche" name="recherche" value="{{ request.GET.recherche }}">
+
+                    <input type="hidden" class="form-control typehead" id="to" name="to" value="{{ request.GET.too }}">
+                </div>
+                  
+               
+            </form>
+            <script type="text/javascript">
+  
+  $(function () {
+    function get_search_results(event) {
+        //var $pager = $('.pager')
+        var itemID = $(event.target).val();
+        
+        $.ajax({
+            type  : "GET",
+            async : false,
+            url   : '/messages/search_modal/',
+            data  :{
+             recherche: $("#recherche").val(),
+             to: $("#to").val(),
+             //page : page,
+           },
+            cache : false,
+            success: function(html) {
+                 
+               $( "#modal-body2" ).html( html );
+            console.log("aaa")
+            }
+          });
+
+    }
+        $("#recherche").on('keyup', function (e) {
+          get_search_results(e);
+        });
+  })
+
+</script>
+        </div>
+        <div class="modal-body" id="modal-body2">
+           <table class="table">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>product name</th>
+
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                       {% for produit in produituser %}
+                            <tr>
+                            
+<tr><td><a href="{% url 'boutique:detail_produitdescover' produit.id %}">
+                                                <img src="{{ produit.logo.url }}"  style="width:100px;height:100px;" class="img-responsive">
+</a></td>
+<td><div>{{produit.title}} 
+          
+
+<form role="form" method="post" action="{% url 'boutique:send2'  %}" id="send2">
+          {% csrf_token %}
+          <input type="hidden" name="to" value="{{ request.GET.too }}">
+           <input type="hidden" name="objet" value="{{ produit.title}}">
+            <input type="hidden" name="url" value="{{ produit.id }}">
+          
+                  <button type="submit" class="btn btn-primary">Send</button>
+
+        </form>
+
+
+        </div>
+
+        </td></tr>
+
+
+{%endfor%}
+
+</tbody></table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+
+
+ <form class="navbar-form navbar-left" role="search" action="{% url 'boutique:searchproduit' %}">
+                  <div class="input-group" style="width:210px">
+                    <input type="text" class="form-control" name="q" placeholder="Search">
+                    <input type="hidden"  name="user1" value="{{active}}">
+
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                  </div>
+                </form>
+</div>
+
+
+

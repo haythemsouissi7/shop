@@ -1,0 +1,72 @@
+
+
+.arrow-right {
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+  width: 0; 
+  height: 0; 
+  
+}
+
+
+
+.up h4 {
+    text-align: center;
+    top: -30px;
+    left: -50px;
+    position: relative;
+    width: 50px;
+    height: 80px;
+    margin: 0px;
+    transform:rotate(180deg);
+}
+
+.triangle{
+width: 250px;
+height: 90px;
+}
+.up1{
+  width: 70px:
+  height:80px;
+}
+.disc{
+  width: 70px;
+  height: 80px;
+}
+.tim{
+  width: 70px;
+  height: 80px;
+}
+
+
+
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
+

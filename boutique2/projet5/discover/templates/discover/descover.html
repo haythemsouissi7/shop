@@ -1,0 +1,51 @@
+{% extends 'produit/base2.html' %}
+{% block title %}All produuits{% endblock %}
+{% block songs_active %}active{% endblock %}
+
+
+{% block body %}
+
+
+    {% for produit in produits %}
+
+
+
+
+
+                                 <div class="col-sm-2 col-lg-4">
+                                    <div class="thumbnail">
+
+                                                <img src="{{ produit.logo.url }}"  style="width:500px;height:200px;" class="img-responsive">
+                                               
+                                    <div>{{ produit.title }}</div>
+
+                                            <div class="caption">
+
+
+
+<!--<input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> -->
+<li>
+ {% if produit.etat == "desactive" %}
+<a href="{% url 'boutique:activer' produit.id %}" target="_blank"> <input type="button" value="acticer/desactiver"> </a>
+     {% else %}
+<a href="{% url 'boutique:desactiver' produit.id %}" target="_blank"> <input type="button" value="acticer/desactiver"> </a>
+     <a href="{% url 'boutique:detail_produit' produit.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+{% endif %}
+<!--  if produit activé permission de detailler-->
+     </li>
+
+   <li>  <a href="{% url 'boutique:duppliquer' produit.id %}" target="_blank"> <input type="button" value="duppliquer"> </a></li> <!-- View Details -->
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+    {% endfor %}
+
+{% include "produit/pagination.html" with page=produits %}
+
+
+{% endblock %}
